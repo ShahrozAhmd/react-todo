@@ -1,17 +1,16 @@
-import React, { Component } from 'react'
-import classes from  "./App.module.css";
-
-
+import React, { Component } from "react";
+import classes from "./App.module.css";
+import AddTaskBar from "../Components/AddTaskBar/addTaskBar";
+import TaskContainer from "../Components/TasksContainer/taskContainer";
 
 export default class App extends Component {
   render() {
     return (
-      <div>
-        
+      <div className={classes.Container}>
+        <AddTaskBar />
+
+        <TaskContainer />
       </div>
-    )
+    );
   }
 }
-
-
-export default App;
