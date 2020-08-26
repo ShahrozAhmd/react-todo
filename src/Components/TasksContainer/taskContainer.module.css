@@ -1,0 +1,24 @@
+.container {
+  margin-top: 2%;
+  border: 1px solid green;
+  overflow: scroll;
+  height: 80%;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  border-bottom: 1px solid darkslategray;
+  padding: 0 5% 0 5%;
+  color: darkslategray;
+
+}
+
+.Table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
