@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./taskItem.module.css";
-import ActionButton from "../../ActionButtons/actionButton";
+import ActionButton from '../../ActionButtons/actionButton';
 
 export default function TaskItem(props) {
   return (
@@ -10,7 +10,7 @@ export default function TaskItem(props) {
         Do Breakfast in the morning preferably eggs and tea
       </td>
       <td className={classes.Date}>Aug, 26</td>
-      <td className={classes.Action}>Buttons</td>
+      <td className={classes.Action}><ActionButton/></td>
     </tr>
   );
 }
