@@ -8,6 +8,12 @@ class App extends Component {
     tasks: [],
   };
 
+  //just a utility function to clear the input field 
+  emptyInputBox = () => {
+    document.querySelector("input").value = " ";
+  };
+  
+
   addTaskHandler = () => {
     const val = document.querySelector("input").value;
 
@@ -17,6 +23,8 @@ class App extends Component {
     this.setState({
       tasks: copyState,
     });
+
+    this.emptyInputBox();
   };
 
   editTaskHandler = () => {
