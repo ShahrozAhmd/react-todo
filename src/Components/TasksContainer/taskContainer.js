@@ -14,9 +14,9 @@ export default function TaskContainer(props) {
             <th className={classes.Action}>Action</th>
           </tr>
           {/* here I have to run .map to print rows as per data */}
-          <TaskItem />
-          <TaskItem />
-          <TaskItem />
+          <TaskItem atask = {props.tasks} />
+          {/* <TaskItem />
+          <TaskItem /> */}
         </table>
       </div>
     </div>
