@@ -10,8 +10,9 @@ import classes from "./addTaskBar.module.css";
       <input
         type="text"
         className={classes.InputBox}
+        onChange = {props.btnstate}
       />
-      <button className={classes.AddTaskBtn} onClick= {props.addTask}>
+      <button  className={classes.AddTaskBtn} onClick= {props.addTask} disabled = {props.disbtn} >
         <FontAwesomeIcon icon={faPlusSquare} style={{ marginRight: "5px" }} />
         Add Task
       </button>
