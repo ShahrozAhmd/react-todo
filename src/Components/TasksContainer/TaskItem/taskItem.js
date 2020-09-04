@@ -12,7 +12,7 @@ export default function TaskItem(props) {
         <td className={classes.Task}>{props.atask[index]}</td>
         <td className={classes.Date}> <Date/></td>
         <td className={classes.Action}>
-          <ActionButton />
+          <ActionButton taskInd = {index} thedel = {props.adel}/>
         </td>
       </tr>
     );

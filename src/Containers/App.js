@@ -37,8 +37,10 @@ class App extends Component {
     //code to edit the particular task
   };
 
-  deleteTaskHandler = () => {
-    //code to delerte the particular task
+  deleteTaskHandler = (i) => {
+    const copyState = [...this.state.tasks];
+    copyState.splice(i, 1);
+    this.setState({ tasks: copyState });
   };
 
   render() {
@@ -49,7 +51,10 @@ class App extends Component {
           disbtn={this.state.isBtnDisable}
           btnstate={this.changeBtnState}
         />
-        <TaskContainer tasks={this.state.tasks} />
+        <TaskContainer
+          tasks={this.state.tasks}
+          delete={this.deleteTaskHandler}
+        />
       </div>
     );
   }
