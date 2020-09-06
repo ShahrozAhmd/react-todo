@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "./actionButton.module.css";
 
 const ActionButton = (props) => {
-    
   return (
     <div>
       <button>
@@ -16,12 +15,15 @@ const ActionButton = (props) => {
         />
       </button>
 
-      <button onClick = {() =>{props.thedel(props.taskInd)}}>
+      <button
+        onClick={() => {
+          props.thedel(props.taskInd);
+        }}
+      >
         <FontAwesomeIcon
           icon={faTimes}
           className={classes.ButtonItem}
           size="lg"
-          
         />
       </button>
     </div>

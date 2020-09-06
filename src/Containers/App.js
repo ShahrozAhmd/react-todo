@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./App.module.css";
 import AddTaskBar from "../Components/AddTaskBar/addTaskBar";
 import TaskContainer from "../Components/TasksContainer/taskContainer";
+import Backdrop from "../UI/Backdrop/backdrop";
 
 class App extends Component {
   state = {
@@ -34,7 +35,7 @@ class App extends Component {
   };
 
   editTaskHandler = () => {
-    //code to edit the particular task
+
   };
 
   deleteTaskHandler = (i) => {
@@ -45,7 +46,9 @@ class App extends Component {
 
   render() {
     return (
+      
       <div className={classes.Container}>
+        <Backdrop />
         <AddTaskBar
           addTask={this.addTaskHandler}
           disbtn={this.state.isBtnDisable}
