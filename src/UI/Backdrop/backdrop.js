@@ -4,10 +4,12 @@ import Modal from "../Modal/modal";
 
 export default function Backdrop(props) {
   return (
-      <>
-    <div className={classes.Backdrop}>
+    <div>
+      <div
+        onClick={props.remove}
+        className={props.backdropToggle ? classes.Backdrop : classes.NoBackdrop}
+      ></div>
+      <Modal modal={props.backdropToggle} />
     </div>
-    <Modal />
-    </>
   );
 }

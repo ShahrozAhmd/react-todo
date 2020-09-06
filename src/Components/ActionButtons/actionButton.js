@@ -7,7 +7,7 @@ import classes from "./actionButton.module.css";
 const ActionButton = (props) => {
   return (
     <div>
-      <button>
+      <button onClick = {() =>{props.theedit(props.taskInd)}}>
         <FontAwesomeIcon
           icon={faPencilAlt}
           className={classes.ButtonItem}

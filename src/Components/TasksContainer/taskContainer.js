@@ -18,6 +18,7 @@ export default function TaskContainer(props) {
             <TaskItem
               atask={props.tasks}
               adel={props.delete}
+              aedit = {props.edit}
             />
             {/* <TaskItem />
           <TaskItem /> */}

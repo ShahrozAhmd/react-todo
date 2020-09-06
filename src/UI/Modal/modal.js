@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./modal.module.css";
 
 export default function Modal(props) {
-  return (
+  return ( props.modal ?
     <div className={classes.Container}>
       <div className={classes.EditBox}>
         <div style={{ width: "60%" }}>
@@ -20,9 +20,9 @@ export default function Modal(props) {
           <input className={classes.TaskInput} type="text" />
         </div>
         <div style={{ width: "60%" }}>
-          <button>Finish</button>
+          <button className = {classes.FinishButton}>Finish</button>
         </div>
       </div>
-    </div>
+    </div>: null
   );
 }

@@ -8,6 +8,7 @@ class App extends Component {
   state = {
     tasks: [],
     isBtnDisable: true,
+    isBackdropEnable: false,
   };
 
   //just a utility function to clear the input field
@@ -34,8 +35,13 @@ class App extends Component {
     this.emptyInputBox();
   };
 
-  editTaskHandler = () => {
+  //to disble edit screen by clicking backdrop
+  removeBackdrop = () => {
+    this.setState({ isBackdropEnable: false });
+  };
 
+  editTaskHandler = (i) => {
+    this.setState({ isBackdropEnable: true });
   };
 
   deleteTaskHandler = (i) => {
@@ -46,9 +52,11 @@ class App extends Component {
 
   render() {
     return (
-      
       <div className={classes.Container}>
-        <Backdrop />
+        <Backdrop
+          backdropToggle={this.state.isBackdropEnable}
+          remove={this.removeBackdrop}
+        />
         <AddTaskBar
           addTask={this.addTaskHandler}
           disbtn={this.state.isBtnDisable}
@@ -57,6 +65,7 @@ class App extends Component {
         <TaskContainer
           tasks={this.state.tasks}
           delete={this.deleteTaskHandler}
+          edit={this.editTaskHandler}
         />
       </div>
     );
