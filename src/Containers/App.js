@@ -89,7 +89,7 @@ class App extends Component {
     }
   };
 
-  //For deleting any task from the list 
+  //For deleting any task from the list
   deleteTaskHandler = (i) => {
     const copyState = [...this.state.tasks];
     copyState.splice(i, 1);

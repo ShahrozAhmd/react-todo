@@ -4,15 +4,19 @@ import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "./addTaskBar.module.css";
 
- function  AddTaskBar(props){
+function AddTaskBar(props) {
   return (
     <div className={classes.Container}>
       <input
         type="text"
         className={classes.InputBox}
-        onChange = {props.btnstate}
+        onChange={props.btnstate}
       />
-      <button  className={classes.AddTaskBtn} onClick= {props.addTask} disabled = {props.disbtn} >
+      <button
+        className={classes.AddTaskBtn}
+        onClick={props.addTask}
+        disabled={props.disbtn}
+      >
         <FontAwesomeIcon icon={faPlusSquare} style={{ marginRight: "5px" }} />
         Add Task
       </button>
