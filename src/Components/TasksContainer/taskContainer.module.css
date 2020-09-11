@@ -37,3 +37,10 @@ th {
 .Task {
   flex-grow: 2;
 }
+
+@media(max-width:320px){
+  .Sno, .Task, .Date, .Action{
+    font-size: 0.9rem;
+  }
+
+}

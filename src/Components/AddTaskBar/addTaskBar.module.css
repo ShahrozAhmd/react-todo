@@ -4,7 +4,6 @@
   justify-content: center;
   align-items: center;
   height: 10vh;
-  
 }
 
 .InputBox {
@@ -15,7 +14,6 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   outline: none;
-  
 }
 
 .AddTaskBtn {
@@ -30,9 +28,60 @@
   font-size: 0.85em;
   outline: none;
   cursor: pointer;
-
 }
 
 .AddTaskBtn:hover {
   background-color: rgb(19, 216, 216);
+}
+@media (max-width: 320px) {
+  .Container {
+    flex-direction: column;
+    height: 20vh;
+  }
+
+  .AddTaskBtn {
+    width: 90%;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .InputBox {
+    width: 90%;
+    border-radius: 5px;
+  }
+}
+@media (max-width: 375px) {
+  .Container {
+    flex-direction: column;
+    height: 20vh;
+  }
+
+  .AddTaskBtn {
+    width: 90%;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .InputBox {
+    width: 90%;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 425px) {
+  .Container {
+    flex-direction: column;
+    height: 20vh;
+  }
+
+  .AddTaskBtn {
+    width: 90%;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .InputBox {
+    width: 90%;
+    border-radius: 5px;
+  }
 }

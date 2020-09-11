@@ -29,4 +29,67 @@ td {
 .Task {
   flex-grow: 2;
   overflow: auto;
+  width: 20px;
 }
+
+@media(max-width:320px){
+.Task{
+  overflow: scroll;
+  width: 20px;
+  margin: 5px;
+  /* font-size: 0.6rem; */
+}
+.Sno{
+  margin-right:2px ;
+  font-size: 0.6rem;
+}
+.Date{
+  font-size: 0.7rem;
+}
+}
+
+@media(max-width:375px){
+  .Task{
+    overflow: scroll;
+    width: 20px;
+    margin: 5px;
+  }
+  .Sno{
+    margin-right:2px ;
+    font-size: 0.6rem;
+  }
+  .Date{
+    font-size: 0.7rem;
+  }
+  }
+
+  @media(max-width:425px){
+    .Task{
+      overflow: scroll;
+      width: 20px;
+      margin: 5px;
+    }
+    .Sno{
+      margin-right:2px ;
+      font-size: 0.6rem;
+    }
+    .Date{
+      font-size: 0.7rem;
+    }
+    }
+
+    
+  @media(max-width:768px){
+    .Task{
+      overflow: scroll;
+      width: 20px;
+      margin: 5px;
+    }
+    .Sno{
+      margin-right:2px ;
+      font-size: 0.6rem;
+    }
+    .Date{
+      font-size: 0.7rem;
+    }
+    }

@@ -61,3 +61,19 @@
 .ErrorText{
   font-size: 0.6rem;
 }
+
+@media(max-width:320px){
+  .Container{
+    width: 90%;
+  }
+}
+@media(max-width:375px){
+  .Container{
+    width: 90%;
+  }
+}
+@media(max-width:425px){
+  .Container{
+    width: 90%;
+  }
+}

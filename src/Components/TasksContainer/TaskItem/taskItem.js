@@ -7,7 +7,7 @@ export default function TaskItem(props) {
   return props.atask.map((value, index) => {
     return (
       <tr className={classes.Table} key={index}>
-        <td className={classes.Sno}>{index + 1}</td>
+        <td className={classes.Sno}>{index + 1}.</td>
         <td className={classes.Task}>{props.atask[index]}</td>
         <td className={classes.Date}>
           <Date />
