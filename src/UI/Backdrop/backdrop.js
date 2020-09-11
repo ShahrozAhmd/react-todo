@@ -9,7 +9,13 @@ export default function Backdrop(props) {
         onClick={props.remove}
         className={props.backdropToggle ? classes.Backdrop : classes.NoBackdrop}
       ></div>
-      <Modal modal={props.backdropToggle} />
+      <Modal
+        modal={props.backdropToggle}
+        finishEdit={props.editDone}
+        prioError={props.priorityError}
+        emptyInpError = {props.emptyInputError}
+        arrayLimit={props.limit}
+      />
     </div>
   );
 }

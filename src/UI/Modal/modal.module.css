@@ -47,3 +47,17 @@
     background-color: rgb(19, 216, 216);
    
 }
+
+.Error{
+  width: 60%;
+  color: white;
+  background-color: red;
+  border: 1px solid red;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+}
+
+.ErrorText{
+  font-size: 0.6rem;
+}
