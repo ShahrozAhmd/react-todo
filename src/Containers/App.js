@@ -42,7 +42,7 @@ class App extends Component {
 
   //to disble edit screen by clicking backdrop
   removeBackdrop = () => {
-    var e2 = { ...this.state.modalErrors };
+    let e2 = { ...this.state.modalErrors };
     e2.emptyInputs = false;
     e2. priorityError = false;
 
