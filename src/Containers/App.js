@@ -3,9 +3,10 @@ import classes from "./App.module.css";
 import AddTaskBar from "../Components/AddTaskBar/addTaskBar";
 import TaskContainer from "../Components/TasksContainer/taskContainer";
 import Backdrop from "../UI/Backdrop/backdrop";
+import { connect } from "react-redux";
+import * as actionTypes from '../store/action'
 
 class App extends Component {
-
   //TASKS:
   // -move the state for tasks to store by using redux
 
@@ -48,12 +49,11 @@ class App extends Component {
   removeBackdrop = () => {
     let e2 = { ...this.state.modalErrors };
     e2.emptyInputs = false;
-    e2. priorityError = false;
-
+    e2.priorityError = false;
 
     this.setState({
       isBackdropEnable: false,
-      modalErrors: e2
+      modalErrors: e2,
     });
   };
 
@@ -120,13 +120,13 @@ class App extends Component {
           limit={this.state.tasks.length}
         />
         {/* it will dispath an action to add the task in store */}
-        
+
         <AddTaskBar
           addTask={this.addTaskHandler}
           disbtn={this.state.isBtnDisable}
           btnstate={this.changeBtnState}
         />
-        
+
         {/* it will retrieve the  taskj from the store and also dipatches action for updating and
         deleting the task */}
 
@@ -140,4 +140,19 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddTask : () => dispatch({action:actionTypes.ADD_TASK }),
+    onEditTask : () => dispatch({action:actionTypes.EDIT_TASK }),
+    onDeleteTask : () => dispatch({action:actionTypes.DELETE_TASK }),
+    onSaveEditedTask : () => dispatch({action:actionTypes.SAVE_EDITED_TASK }),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    allTasks: state.tasks,
+  };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
