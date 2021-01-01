@@ -5,6 +5,10 @@ import TaskContainer from "../Components/TasksContainer/taskContainer";
 import Backdrop from "../UI/Backdrop/backdrop";
 
 class App extends Component {
+
+  //TASKS:
+  // -move the state for tasks to store by using redux
+
   state = {
     tasks: [],
     isBtnDisable: true,
@@ -115,11 +119,17 @@ class App extends Component {
           emptyInputError={this.state.modalErrors.emptyInputs}
           limit={this.state.tasks.length}
         />
+        {/* it will dispath an action to add the task in store */}
+        
         <AddTaskBar
           addTask={this.addTaskHandler}
           disbtn={this.state.isBtnDisable}
           btnstate={this.changeBtnState}
         />
+        
+        {/* it will retrieve the  taskj from the store and also dipatches action for updating and
+        deleting the task */}
+
         <TaskContainer
           tasks={this.state.tasks}
           delete={this.deleteTaskHandler}
