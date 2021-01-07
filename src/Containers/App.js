@@ -122,7 +122,7 @@ class App extends Component {
         {/* it will dispath an action to add the task in store */}
 
         <AddTaskBar
-          addTask={this.addTaskHandler}
+          addTask={this.props.onAddTask}
           disbtn={this.state.isBtnDisable}
           btnstate={this.changeBtnState}
         />
@@ -142,10 +142,10 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTask : () => dispatch({action:actionTypes.ADD_TASK }),
-    onEditTask : () => dispatch({action:actionTypes.EDIT_TASK }),
-    onDeleteTask : () => dispatch({action:actionTypes.DELETE_TASK }),
-    onSaveEditedTask : () => dispatch({action:actionTypes.SAVE_EDITED_TASK }),
+    onAddTask : () => dispatch({type:'ADD_TASK' }),
+    onEditTask : () => dispatch({type:actionTypes.EDIT_TASK }),
+    onDeleteTask : () => dispatch({type:actionTypes.DELETE_TASK }),
+    onSaveEditedTask : () => dispatch({type:actionTypes.SAVE_EDITED_TASK }),
   };
 };
 
@@ -155,4 +155,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
