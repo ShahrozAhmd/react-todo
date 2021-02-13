@@ -10,10 +10,11 @@ export default function Backdrop(props) {
         className={props.backdropToggle ? classes.Backdrop : classes.NoBackdrop}
       ></div>
       <Modal
+        taskToEdit={props.taskToEdit}
         modal={props.backdropToggle}
         finishEdit={props.editDone}
         prioError={props.priorityError}
-        emptyInpError = {props.emptyInputError}
+        emptyInpError={props.emptyInputError}
         arrayLimit={props.limit}
       />
     </div>

@@ -19,8 +19,9 @@ const DateToday = () => {
   ];
   var date = date.getDate();
   var finalDate = `${monthArr[month]},${date}`;
-
-  return <>{finalDate}</>;
+  console.log(finalDate);
+  //return <>{finalDate}</>;
+  return finalDate;
 };
 
 export default DateToday;

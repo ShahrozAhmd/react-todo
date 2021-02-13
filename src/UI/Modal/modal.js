@@ -12,7 +12,7 @@ export default function Modal(props) {
           </div>
         ) : null}
 
-        {props.emptyInpError? (
+        {props.emptyInpError ? (
           <div className={classes.Error}>
             Error <br />
             <p className={classes.ErrorText}>(Empty Inputs)</p>
@@ -27,6 +27,7 @@ export default function Modal(props) {
             type="number"
             min="1"
             max={props.arrayLimit}
+            value={props.taskToEdit + 1}
           />
         </div>
 
