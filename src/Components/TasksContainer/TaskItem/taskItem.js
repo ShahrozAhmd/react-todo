@@ -1,7 +1,6 @@
 import React from "react";
 import classes from "./taskItem.module.css";
 import ActionButton from "../../ActionButtons/actionButton";
-import Date from "../../Date/date";
 
 export default function TaskItem(props) {
   return props.atask.map((item, index) => {

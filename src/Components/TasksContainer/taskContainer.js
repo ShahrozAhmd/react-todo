@@ -20,8 +20,6 @@ export default function TaskContainer(props) {
               adel={props.delete}
               aedit={props.edit}
             />
-            {/* <TaskItem />
-          <TaskItem /> */}
           </tbody>
         </table>
       </div>

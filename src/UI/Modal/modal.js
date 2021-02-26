@@ -22,18 +22,25 @@ export default function Modal(props) {
         <div style={{ width: "60%" }}>
           Priority
           <input
+            value={props.taskToEdit}
+            onChange={props.editTaskIndexHandler}
             id="position-input"
             className={classes.PositionInput}
             type="number"
             min="1"
             max={props.arrayLimit}
-            value={props.taskToEdit + 1}
           />
         </div>
 
         <div style={{ width: "60%" }}>
           Task
-          <input id="task-input" className={classes.TaskInput} type="text" />
+          <input
+            value={props.taskOnHold}
+            onChange={props.editTaskStrHandler}
+            id="task-input"
+            className={classes.TaskInput}
+            type="text"
+          />
         </div>
         <div style={{ width: "60%" }}>
           <button className={classes.FinishButton} onClick={props.finishEdit}>

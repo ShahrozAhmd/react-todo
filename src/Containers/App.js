@@ -6,14 +6,16 @@ import Backdrop from "../UI/Backdrop/backdrop";
 import Date from "../Components/Date/date";
 import axios from "../axios";
 
-// var i = 0;
 class App extends Component {
   state = {
-    taskOnHold: [],
+    currIndex: null,
+    taskStr: "",
+    taskInd: null,
+    taskOnHold: null,
     tasks: [],
     isBtnDisable: true,
     isBackdropEnable: false,
-    taskToEdit: 0,
+    taskToEdit: null,
     modalErrors: {
       priorityError: false,
       emptyInputs: false,
@@ -28,41 +30,24 @@ class App extends Component {
   //this functions run on every key typing in text box to validate out button for functioning.
   changeBtnState = (e) => {
     if (e.target.value.trim()) {
-      const str = [];
-      str.push(e.target.value);
+      let str = null;
+      str = e.target.value;
+      console.log(str);
       this.setState({ isBtnDisable: false, taskOnHold: str });
     }
   };
 
   addTaskHandler = () => {
-    // const val = document.querySelector("input").value;
-    // const copyState = [...this.state.tasks];
-    // copyState.push(val);
-    // this.setState({
-    //   tasks: copyState,
-    //   isBtnDisable: true,
-    // });
-
-    // i = i + 1;
-
-    // console.log(i);
     const atask = {
       date: Date(),
-      task: this.state.taskOnHold.toString(),
-      // id: i,
+      task: this.state.taskOnHold,
     };
-    // var myid;
     axios.post("/tasksList.json", atask).then((res) => {
-      //  myid = res.data.name;
       const newtask = [...this.state.tasks];
       newtask.push({ id: res.data.name, data: atask });
-      // console.log(newtask);
       this.setState({ tasks: newtask });
-      console.log(this.state.taskOnHold);
-      // console.log(res.data);
+      console.log(this.state.tasks);
     });
-    // console.log(myid);
-    //  axios.get("/tasksList.json").then(data =>  console.log(data.data.myid),500);
 
     this.emptyInputBox();
   };
@@ -79,43 +64,51 @@ class App extends Component {
     });
   };
 
+  editTaskIndexHandler = (e) => {
+    const value = e.target.value;
+    this.setState({ taskToEdit: value });
+  };
+
+  editTaskStrHandler = (e) => {
+    const value = e.target.value;
+    this.setState({ taskOnHold: value });
+  };
+
   editTaskHandler = (i) => {
-    this.setState({ isBackdropEnable: true, taskToEdit: i });
-    let currState = [...this.state.tasks];
-
-    setTimeout(() => {
-      // var position = document.getElementById("position-input");
-      // position.value = i + 1;
-
-      var task = document.getElementById("task-input");
-      task.value = currState[i].data.task;
-    }, 10);
+    console.log(i);
+    this.setState({
+      currIndex: i,
+      isBackdropEnable: true,
+      taskToEdit: i,
+      taskOnHold: this.state.tasks[i].data.task,
+    });
   };
 
   assignEditedTask = () => {
     let currTasksStates = [...this.state.tasks];
-    let currIndex = this.state.taskToEdit;
+    let currIndex = this.state.currIndex;
+    let position = this.state.taskToEdit;
+    let taskValue = this.state.taskOnHold;
 
-    let position = document.getElementById("position-input");
-    let positionValue = position.value - 1;
-    let task = document.getElementById("task-input");
-    let taskValue = task.value;
-
-    if (!position.value.trim() || !taskValue.trim()) {
+    if (position === "" || taskValue === "") {
       //use this logic to update nested state using setState, coz setState not suport tradional js way.
       var e2 = { ...this.state.modalErrors };
       e2.emptyInputs = true;
       this.setState({ modalErrors: e2 });
-    } else if (position.value > currTasksStates.length) {
+    } else if (position > currTasksStates.length) {
       var e1 = { ...this.state.modalErrors };
       e1.priorityError = true;
       this.setState({ modalErrors: e1 });
     } else {
       currTasksStates.splice(currIndex, 1);
-      const editedTask = this.state.tasks[currIndex].data.task = taskValue
-      currTasksStates.splice(positionValue, 0, editedTask);
+      const editedTask = { ...this.state.tasks[currIndex] };
+      editedTask.data.task = taskValue;
+
+      console.log(editedTask);
+      currTasksStates.splice(position, 0, editedTask);
 
       //finally update state after all checks and modification
+      console.log(currTasksStates);
       this.setState({
         tasks: currTasksStates,
         isBackdropEnable: false,
@@ -136,7 +129,10 @@ class App extends Component {
     return (
       <div className={classes.Container}>
         <Backdrop
+          taskOnHold={this.state.taskOnHold}
           taskToEdit={this.state.taskToEdit}
+          editTaskStrHandler={this.editTaskStrHandler}
+          editTaskIndexHandler={this.editTaskIndexHandler}
           backdropToggle={this.state.isBackdropEnable}
           remove={this.removeBackdrop}
           editDone={this.assignEditedTask}

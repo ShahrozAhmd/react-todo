@@ -10,6 +10,9 @@ export default function Backdrop(props) {
         className={props.backdropToggle ? classes.Backdrop : classes.NoBackdrop}
       ></div>
       <Modal
+        editTaskIndexHandler={props.editTaskIndexHandler}
+        editTaskStrHandler={props.editTaskStrHandler}
+        taskOnHold={props.taskOnHold}
         taskToEdit={props.taskToEdit}
         modal={props.backdropToggle}
         finishEdit={props.editDone}
