@@ -1,7 +1,9 @@
 import React from "react";
 import classes from "./modal.module.css";
 
-export default function Modal(props) {
+const  Modal = (props) =>  {
+
+
   return props.modal ? (
     <div className={classes.Container}>
       <div className={classes.EditBox}>
@@ -51,3 +53,5 @@ export default function Modal(props) {
     </div>
   ) : null;
 }
+
+export default Modal;

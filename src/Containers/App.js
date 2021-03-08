@@ -22,6 +22,25 @@ class App extends Component {
     },
   };
 
+  componentDidMount() {
+    let data = null;
+    axios
+      .get("https://todo-in-react-default-rtdb.firebaseio.com/tasksList.json")
+      .then((res) => {
+        console.log(res.data);
+        data = Object.keys(res.data);
+        let task = data.map((item, index) => {
+          return {
+            id: item,
+            data: {
+              ...res.data[item],
+            },
+          };
+        });
+        this.setState({ tasks: task });
+      });
+  }
+
   //just a utility function to clear the input field
   emptyInputBox = () => {
     document.querySelector("input").value = "";
@@ -64,8 +83,8 @@ class App extends Component {
     });
   };
 
-  editTaskIndexHandler = (e) => {
-    const value = e.target.value;
+  editTaskIndexHandler = (event) => {
+    let value = event.target.value;
     this.setState({ taskToEdit: value });
   };
 
@@ -75,11 +94,10 @@ class App extends Component {
   };
 
   editTaskHandler = (i) => {
-    console.log(i);
     this.setState({
       currIndex: i,
       isBackdropEnable: true,
-      taskToEdit: i,
+      taskToEdit: i + 1,
       taskOnHold: this.state.tasks[i].data.task,
     });
   };
