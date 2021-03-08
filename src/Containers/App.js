@@ -140,8 +140,14 @@ class App extends Component {
   deleteTaskHandler = (i) => {
     let afterDeletion = null;
     const copyState = [...this.state.tasks];
-    afterDeletion = copyState.filter((task) => task.id !== copyState[i].id);
-    this.setState({ tasks: afterDeletion });
+    axios
+      .delete(
+        `https://todo-in-react-default-rtdb.firebaseio.com/tasksList/${copyState[i].id}.json`
+      )
+      .then(() => {
+        afterDeletion = copyState.filter((task) => task.id !== copyState[i].id);
+        this.setState({ tasks: afterDeletion });
+      });
   };
 
   render() {
