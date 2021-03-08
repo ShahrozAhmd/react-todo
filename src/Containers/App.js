@@ -138,9 +138,10 @@ class App extends Component {
 
   //For deleting any task from the list
   deleteTaskHandler = (i) => {
+    let afterDeletion = null;
     const copyState = [...this.state.tasks];
-    copyState.splice(i, 1);
-    this.setState({ tasks: copyState });
+    afterDeletion = copyState.filter((task) => task.id !== copyState[i].id);
+    this.setState({ tasks: afterDeletion });
   };
 
   render() {
