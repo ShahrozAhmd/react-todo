@@ -23,11 +23,11 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (this.state.tasks.length > 0) {
-      let data = null;
-      axios
-        .get("https://todo-in-react-default-rtdb.firebaseio.com/tasksList.json")
-        .then((res) => {
+    let data = null;
+    axios
+      .get("https://todo-in-react-default-rtdb.firebaseio.com/tasksList.json")
+      .then((res) => {
+        if (res.data) {
           console.log(res.data);
           data = Object.keys(res.data);
           let task = data.map((item, index) => {
@@ -39,8 +39,8 @@ class App extends Component {
             };
           });
           this.setState({ tasks: task });
-        });
-    }
+        }
+      });
   }
 
   //just a utility function to clear the input field
