@@ -1,9 +1,7 @@
 import React from "react";
 import classes from "./modal.module.css";
 
-const  Modal = (props) =>  {
-
-
+const Modal = (props) => {
   return props.modal ? (
     <div className={classes.Container}>
       <div className={classes.EditBox}>
@@ -21,7 +19,7 @@ const  Modal = (props) =>  {
           </div>
         ) : null}
 
-        <div style={{ width: "60%" }}>
+        {/* <div style={{ width: "60%" }}>
           Priority
           <input
             value={props.taskToEdit}
@@ -32,7 +30,7 @@ const  Modal = (props) =>  {
             min="1"
             max={props.arrayLimit}
           />
-        </div>
+        </div> */}
 
         <div style={{ width: "60%" }}>
           Task
@@ -52,6 +50,6 @@ const  Modal = (props) =>  {
       </div>
     </div>
   ) : null;
-}
+};
 
 export default Modal;

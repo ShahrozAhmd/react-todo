@@ -23,22 +23,24 @@ class App extends Component {
   };
 
   componentDidMount() {
-    let data = null;
-    axios
-      .get("https://todo-in-react-default-rtdb.firebaseio.com/tasksList.json")
-      .then((res) => {
-        console.log(res.data);
-        data = Object.keys(res.data);
-        let task = data.map((item, index) => {
-          return {
-            id: item,
-            data: {
-              ...res.data[item],
-            },
-          };
+    if (this.state.tasks.length > 0) {
+      let data = null;
+      axios
+        .get("https://todo-in-react-default-rtdb.firebaseio.com/tasksList.json")
+        .then((res) => {
+          console.log(res.data);
+          data = Object.keys(res.data);
+          let task = data.map((item, index) => {
+            return {
+              id: item,
+              data: {
+                ...res.data[item],
+              },
+            };
+          });
+          this.setState({ tasks: task });
         });
-        this.setState({ tasks: task });
-      });
+    }
   }
 
   //just a utility function to clear the input field
@@ -118,21 +120,33 @@ class App extends Component {
       e1.priorityError = true;
       this.setState({ modalErrors: e1 });
     } else {
-      currTasksStates.splice(currIndex, 1);
-      const editedTask = { ...this.state.tasks[currIndex] };
-      editedTask.data.task = taskValue;
+      axios
+        .patch(
+          `/tasksList/${this.state.tasks[this.state.taskToEdit - 1].id}/.json`,
+          { task: this.state.taskOnHold }
+        )
+        .then((res) => {
+          const tempState = [...this.state.tasks];
+          tempState[
+            this.state.taskToEdit - 1
+          ].data.task = this.state.taskOnHold;
+          this.setState({
+            tasks: tempState,
+            isBackdropEnable: false,
+            modalErrors: !e2,
+            modalErrors: !e1,
+          });
+        });
 
-      console.log(editedTask);
-      currTasksStates.splice(position, 0, editedTask);
+      // currTasksStates.splice(currIndex, 1);
+      // const editedTask = { ...this.state.tasks[currIndex] };
+      // editedTask.data.task = taskValue;
 
-      //finally update state after all checks and modification
-      console.log(currTasksStates);
-      this.setState({
-        tasks: currTasksStates,
-        isBackdropEnable: false,
-        modalErrors: !e2,
-        modalErrors: !e1,
-      });
+      // console.log(editedTask);
+      // currTasksStates.splice(position, 0, editedTask);
+
+      // //finally update state after all checks and modification
+      // console.log(currTasksStates);
     }
   };
 
@@ -140,14 +154,11 @@ class App extends Component {
   deleteTaskHandler = (i) => {
     let afterDeletion = null;
     const copyState = [...this.state.tasks];
-    axios
-      .delete(
-        `https://todo-in-react-default-rtdb.firebaseio.com/tasksList/${copyState[i].id}.json`
-      )
-      .then(() => {
-        afterDeletion = copyState.filter((task) => task.id !== copyState[i].id);
-        this.setState({ tasks: afterDeletion });
-      });
+    axios.delete(
+      `https://todo-in-react-default-rtdb.firebaseio.com/tasksList/${copyState[i].id}.json`
+    );
+    afterDeletion = copyState.filter((task) => task.id !== copyState[i].id);
+    this.setState({ tasks: afterDeletion });
   };
 
   render() {
